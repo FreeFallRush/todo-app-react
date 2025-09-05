@@ -7,7 +7,7 @@ import "./App.css";
 function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
 
-  const handleaAddTodo = (title: string) => {
+  const handleAddTodo = (title: string) => {
     const newTodo: Todo = {
       id: todos.length + 1,
       title,
@@ -18,7 +18,7 @@ function App() {
 
   return (
     <>
-      <TodoForm onAdd={handleaAddTodo} />
+      <TodoForm onAdd={handleAddTodo} />
       <ul>
         {todos.map((todo) => (
           <li key={todo.id}>{todo.title}</li>
