@@ -2,7 +2,7 @@ export interface Todo {
   id: string;
   title: string;
   dueDate: string;
-  priority: "High Priority" | "Medium Priority" | "Low Priority";
+  priority: string;
 }
 
 export interface Project {
