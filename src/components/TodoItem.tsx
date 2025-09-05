@@ -2,13 +2,14 @@ import type { Todo } from "../types";
 
 interface TodoItemProps {
   todo: Todo;
-  onDelete: (id: number) => void;
+  onDelete: (id: string) => void;
 }
 
 function TodoItem({ todo, onDelete }: TodoItemProps) {
   return (
     <li>
-      {todo.title}
+      <strong>{todo.title}</strong> <br />
+      Due: {todo.dueDate || "No date"} | Priority: {todo.priority}
       <button onClick={() => onDelete(todo.id)}>Delete</button>
     </li>
   );
