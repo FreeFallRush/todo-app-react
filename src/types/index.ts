@@ -1,5 +1,5 @@
 export interface Todo {
-  id: number;
+  id: string;
   title: string;
   dueDate: string;
   priority: "High Priority" | "Medium Priority" | "Low Priority";
