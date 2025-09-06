@@ -12,3 +12,9 @@ export interface Project {
   color?: string;
   todos: Todo[];
 }
+
+export interface NewProject {
+  name: string;
+  description?: string;
+  color?: string;
+}
