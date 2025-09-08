@@ -6,7 +6,7 @@ export interface Todo {
 }
 
 export interface Project {
-  id: number;
+  id: string;
   name: string;
   description?: string;
   color?: string;
