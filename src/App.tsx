@@ -1,19 +1,36 @@
 import { useState } from "react";
-import TodoForm from "./components/TodoForm";
-import TodoList from "./components/TodoList";
-import type { Todo } from "./types";
+import type { Project, Todo, NewProject } from "./types";
 import { v4 as uuidv4 } from "uuid";
+
+import ProjectForm from "./components/ProjectForm";
+import ProjectList from "./components/ProjectList";
 
 import "./App.css";
 
 function App() {
-  const [todos, setTodos] = useState<Todo[]>([]);
+  const [projects, setProjects] = useState<Project[]>([]);
 
-  const handleAddTodo = (todo: {
-    title: string;
-    dueDate: string;
-    priority: string;
-  }) => {
+  const handleAddProject = (project: NewProject) => {
+    const newProject: Project = {
+      id: uuidv4(),
+      name: project.name,
+      description: project.description,
+      color: project.color,
+      todos: [],
+    };
+
+    setProjects([...projects, newProject]);
+    console.log("New project: ", newProject);
+  };
+
+  const handleDeleteProject = (id: string) => {
+    setProjects(projects.filter((project) => project.id !== id));
+  };
+
+  const handleAddTodo = (
+    projectId: string,
+    todo: { title: string; dueDate: string; priority: string }
+  ) => {
     const newTodo: Todo = {
       id: uuidv4(),
       title: todo.title,
@@ -21,19 +38,37 @@ function App() {
       priority: todo.priority,
     };
 
-    console.log("New todo: ", newTodo);
-    setTodos([...todos, newTodo]);
+    setProjects((prevProjects) =>
+      prevProjects.map((project) =>
+        project.id === projectId
+          ? { ...project, todos: [...project.todos, newTodo] }
+          : project
+      )
+    );
   };
 
-  const handleDeleteTodo = (id: string) => {
-    const filteredTodos = todos.filter((todo) => todo.id !== id);
-    setTodos(filteredTodos);
+  const handleDeleteTodo = (projectId: string, todoId: string) => {
+    setProjects((prevProjects) =>
+      prevProjects.map((project) =>
+        project.id === projectId
+          ? {
+              ...project,
+              todos: project.todos.filter((todo) => todo.id !== todoId),
+            }
+          : project
+      )
+    );
   };
 
   return (
     <>
-      <TodoForm onAdd={handleAddTodo} />
-      <TodoList todos={todos} onDelete={handleDeleteTodo} />
+      <ProjectForm onAdd={handleAddProject} />
+      <ProjectList
+        projects={projects}
+        onDeleteProject={handleDeleteProject}
+        onAddTodo={handleAddTodo}
+        onDeleteTodo={handleDeleteTodo}
+      />
     </>
   );
 }
