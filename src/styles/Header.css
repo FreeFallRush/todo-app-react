@@ -21,12 +21,13 @@ header {
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
 }
 
 .logo-text {
+  font-family: "RobotoBlack";
   text-shadow: var(--logo-text-shadow);
-  padding-right: 20px;
+  padding-right: 25px;
 }
 
 .toggle-menu {
