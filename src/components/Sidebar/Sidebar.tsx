@@ -25,23 +25,35 @@ function Sidebar({ onNavigate, onAddProject }: SidebarProps) {
       <div className="sidebar">
         <ul className="sidebar-options">
           <li onClick={() => onNavigate("all-projects")}>
-            <FontAwesomeIcon icon={faFolderOpen} />
-            All Projects
+            <a href="#">
+              <FontAwesomeIcon icon={faFolderOpen} />
+              All Projects
+            </a>
           </li>
           <li onClick={() => onNavigate("all-todos")}>
-            <FontAwesomeIcon icon={faCalendarDays} /> All ToDos
+            <a href="#">
+              <FontAwesomeIcon icon={faCalendarDays} /> All ToDos
+            </a>
           </li>
           <li onClick={() => onNavigate("today")}>
-            <FontAwesomeIcon icon={faCalendarDay} /> Today
+            <a href="#">
+              <FontAwesomeIcon icon={faCalendarDay} /> Today
+            </a>
           </li>
           <li onClick={() => onNavigate("upcoming")}>
-            <FontAwesomeIcon icon={faCalendarWeek} /> Upcoming
+            <a href="#">
+              <FontAwesomeIcon icon={faCalendarWeek} /> Upcoming
+            </a>
           </li>
           <li onClick={() => onNavigate("important")}>
-            <FontAwesomeIcon icon={faTriangleExclamation} /> Important
+            <a href="#">
+              <FontAwesomeIcon icon={faTriangleExclamation} /> Important
+            </a>
           </li>
           <li onClick={() => onNavigate("expired")}>
-            <FontAwesomeIcon icon={faSkullCrossbones} /> Expired
+            <a href="#">
+              <FontAwesomeIcon icon={faSkullCrossbones} /> Expired
+            </a>
           </li>
         </ul>
 
