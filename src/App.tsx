@@ -1,18 +1,25 @@
 import { useState } from "react";
-import type { Project, Todo, NewProject } from "./types";
+import type { Project, Todo } from "./types";
 import { v4 as uuidv4 } from "uuid";
 
 import Header from "./components/Header/Header";
+import Sidebar from "./components/Sidebar/Sidebar";
 
-import ProjectForm from "./components/ProjectForm";
+// import ProjectForm from "./components/ProjectForm";
 import ProjectList from "./components/ProjectList";
-
+import TodoList from "./components/TodoList";
 import "./App.css";
 
 function App() {
   const [projects, setProjects] = useState<Project[]>([]);
+  const [todos, setTodos] = useState<Todo[]>([]);
+  const [currentPage, setCurrentPage] = useState("all-projects");
 
-  const handleAddProject = (project: NewProject) => {
+  const handleAddProject = (project: {
+    name: string;
+    description?: string;
+    color?: string;
+  }) => {
     const newProject: Project = {
       id: uuidv4(),
       name: project.name,
@@ -20,58 +27,81 @@ function App() {
       color: project.color,
       todos: [],
     };
-
     setProjects([...projects, newProject]);
-    console.log("New project: ", newProject);
   };
 
   const handleDeleteProject = (id: string) => {
-    setProjects(projects.filter((project) => project.id !== id));
+    setProjects(projects.filter((p) => p.id !== id));
   };
 
   const handleAddTodo = (
     projectId: string,
     todo: { title: string; dueDate: string; priority: string }
   ) => {
-    const newTodo: Todo = {
-      id: uuidv4(),
-      title: todo.title,
-      dueDate: todo.dueDate,
-      priority: todo.priority,
-    };
-
-    setProjects((prevProjects) =>
-      prevProjects.map((project) =>
-        project.id === projectId
-          ? { ...project, todos: [...project.todos, newTodo] }
-          : project
+    setProjects(
+      projects.map((p) =>
+        p.id === projectId
+          ? {
+              ...p,
+              todos: [...p.todos, { id: uuidv4(), ...todo }],
+            }
+          : p
       )
     );
   };
 
   const handleDeleteTodo = (projectId: string, todoId: string) => {
-    setProjects((prevProjects) =>
-      prevProjects.map((project) =>
-        project.id === projectId
-          ? {
-              ...project,
-              todos: project.todos.filter((todo) => todo.id !== todoId),
-            }
-          : project
+    setProjects(
+      projects.map((p) =>
+        p.id === projectId
+          ? { ...p, todos: p.todos.filter((t) => t.id !== todoId) }
+          : p
       )
     );
+  };
+  const renderPage = () => {
+    switch (currentPage) {
+      case "all-projects":
+        return (
+          <ProjectList
+            projects={projects}
+            onDeleteProject={handleDeleteProject}
+            onAddTodo={handleAddTodo}
+            onDeleteTodo={handleDeleteTodo}
+          />
+        );
+      case "all-todos":
+        return <TodoList todos={todos} onDelete={() => {}} />;
+      case "today":
+        return <h2>Today’s Todos</h2>;
+      case "upcoming":
+        return <h2>Upcoming Todos</h2>;
+      case "important":
+        return <h2>Important Todos</h2>;
+      case "expired":
+        return <h2>Expired Todos</h2>;
+      default:
+        return <h2>Page not found</h2>;
+    }
   };
 
   return (
     <div className="page-content">
       <Header onToggleSidebar={() => console.log("toggle sidebar")} />
-      <ProjectForm onAdd={handleAddProject} />
-      <ProjectList
+      {/* <ProjectForm onAdd={handleAddProject} /> */}
+      {/* <ProjectList
         projects={projects}
         onDeleteProject={handleDeleteProject}
         onAddTodo={handleAddTodo}
         onDeleteTodo={handleDeleteTodo}
+      /> */}
+      <Sidebar
+        onNavigate={setCurrentPage}
+        onAddProject={() => console.log("Open Add Project Modal")}
       />
+      <main className="main-container">
+        <div className="main-content">{renderPage()}</div>
+      </main>
     </div>
   );
 }
