@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSquareCheck } from "@fortawesome/free-regular-svg-icons";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import Button from "../Button";
-
+import "../../styles/Header.css";
 interface HeaderProps {
   onToggleSidebar?: () => void;
 }

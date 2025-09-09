@@ -1,8 +1,36 @@
 :root {
-  line-height: 1.5;
-  font-weight: 400;
+  --primary-color: rgb(0, 0, 0);
+  --secondary-color: rgb(244, 244, 171);
+  --linear-background: linear-gradient(to top left, #973ab7, #009688, #4caf50);
+  --dashed-border-black: 1px dashed #000;
+  --dashed-border-yellow: 1px dashed rgb(244, 244, 171);
+  --header-gradient-background: radial-gradient(
+    at left top,
+    rgba(63, 134, 192, 1),
+    rgba(222, 229, 157, 1)
+  );
+  --nav-gradient-background: linear-gradient(
+    315deg,
+    rgba(107, 213, 238, 1),
+    rgba(140, 113, 155, 1)
+  );
+  --main-container-background-color: #eaeef7;
+  --add-btn-background-gradient: linear-gradient(135deg, #d74368, #e04463);
+  --main-box-shadow: 0 2px 5px #000;
+  --inset-box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  --toggle-btn-box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
+    rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+  --buttons-text-shadow: 0 3px 6px rgba(0, 0, 0, 0.2),
+    0 6px 12px rgba(0, 0, 0, 0.1);
+  --logo-text-shadow: 0 0 4px #c28073, 0 0 8px #c28073, 0 0 16px #e13358;
+  --logo-3D-text-shadow: 1px 1px #000000, 2px 2px #111111, 3px 3px #222222,
+    4px 4px #333333;
+  --nav-menu-text-shadow: 0 0 4px #00ffff, 0 0 8px #00ffff, 0 0 16px #ff00ff;
 }
 
 body {
+  line-height: 1.5;
   height: 100%;
 }
