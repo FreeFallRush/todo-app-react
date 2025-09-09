@@ -17,7 +17,7 @@ function ProjectList({
   onAddTodo,
   onDeleteTodo,
 }: ProjectListProps) {
-  if (projects.length === 0) return <p>No projects yet1</p>;
+  if (projects.length === 0) return <p>No projects yet!</p>;
 
   return (
     <div>
