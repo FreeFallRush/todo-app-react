@@ -2,6 +2,8 @@ import { useState } from "react";
 import type { Project, Todo, NewProject } from "./types";
 import { v4 as uuidv4 } from "uuid";
 
+import Header from "./components/Header/Header";
+
 import ProjectForm from "./components/ProjectForm";
 import ProjectList from "./components/ProjectList";
 
@@ -61,7 +63,8 @@ function App() {
   };
 
   return (
-    <>
+    <div className="page-content">
+      <Header onToggleSidebar={() => console.log("toggle sidebar")} />
       <ProjectForm onAdd={handleAddProject} />
       <ProjectList
         projects={projects}
@@ -69,7 +72,7 @@ function App() {
         onAddTodo={handleAddTodo}
         onDeleteTodo={handleDeleteTodo}
       />
-    </>
+    </div>
   );
 }
 
