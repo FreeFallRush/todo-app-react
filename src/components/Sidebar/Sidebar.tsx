@@ -12,6 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import Button from "../Button";
+import "../../styles/Sidebar.css";
 
 interface SidebarProps {
   onNavigate: (page: string) => void;
@@ -45,7 +46,7 @@ function Sidebar({ onNavigate, onAddProject }: SidebarProps) {
         </ul>
 
         <div className="project-add">
-          <Button onClick={onAddProject}>
+          <Button onClick={onAddProject} className="add-project-btn">
             Add Project <FontAwesomeIcon icon={faSquarePlus} />
           </Button>
         </div>
