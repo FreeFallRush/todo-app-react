@@ -2,10 +2,10 @@ import type { NewProject } from "../types";
 import { useState } from "react";
 
 interface ProjectFormProps {
-  onAdd: (project: NewProject) => void;
+  onSubmit: (project: NewProject) => void;
 }
 
-function ProjectForm({ onAdd }: ProjectFormProps) {
+function ProjectForm({ onSubmit }: ProjectFormProps) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [color, setColor] = useState("#000000");
@@ -14,33 +14,41 @@ function ProjectForm({ onAdd }: ProjectFormProps) {
     e.preventDefault();
     if (!name.trim()) return;
 
-    onAdd({ name, description, color });
+    onSubmit({ name, description, color });
     setName("");
     setDescription("");
     setColor("#000000");
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        placeholder="How would you call it?"
-        required
-      />
-      <textarea
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        placeholder="Your choice if you want to add a short description to your project..."
-      />
-      <input
-        type="color"
-        value={color}
-        onChange={(e) => setColor(e.target.value)}
-      />
+    <form onSubmit={handleSubmit} className="modal-form">
+      <div className="project-name-form">
+        <h3>Project Name</h3>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="How would you call it?"
+          required
+        />
+      </div>
 
-      <button type="submit">Add Project</button>
+      <div className="project-description-form">
+        <h3>Description</h3>
+        <textarea
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Your choice if you want to add a short description to your project..."
+        />
+      </div>
+      <div className="project-color-form">
+        <span className="color-input-text">Choose color:</span>
+        <input
+          type="color"
+          value={color}
+          onChange={(e) => setColor(e.target.value)}
+        />
+      </div>
     </form>
   );
 }

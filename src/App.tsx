@@ -113,7 +113,7 @@ function App() {
         title="Add Project"
       >
         <ProjectForm
-          onAdd={(project) => {
+          onSubmit={(project) => {
             handleAddProject(project);
             setIsProjectModalOpen(false);
           }}
