@@ -1,5 +1,6 @@
 import type { NewProject } from "../types";
 import { useState } from "react";
+import "../styles/ModalForm.css";
 
 interface ProjectFormProps {
   onSubmit: (project: NewProject) => void;
@@ -23,7 +24,7 @@ function ProjectForm({ onSubmit }: ProjectFormProps) {
   return (
     <form onSubmit={handleSubmit} className="modal-form">
       <div className="project-name-form">
-        <h3>Project Name</h3>
+        <h3>Project Name: </h3>
         <input
           type="text"
           value={name}
@@ -34,7 +35,7 @@ function ProjectForm({ onSubmit }: ProjectFormProps) {
       </div>
 
       <div className="project-description-form">
-        <h3>Description</h3>
+        <h3>Project Description:</h3>
         <textarea
           value={description}
           onChange={(e) => setDescription(e.target.value)}
@@ -42,7 +43,7 @@ function ProjectForm({ onSubmit }: ProjectFormProps) {
         />
       </div>
       <div className="project-color-form">
-        <span className="color-input-text">Choose color:</span>
+        <span className="color-input-text">Project's Color:</span>
         <input
           type="color"
           value={color}
