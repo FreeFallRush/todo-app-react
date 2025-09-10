@@ -4,8 +4,8 @@ import { v4 as uuidv4 } from "uuid";
 
 import Header from "./components/Header/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
-
-// import ProjectForm from "./components/ProjectForm";
+import Modal from "./components/Modal";
+import ProjectForm from "./components/ProjectForm";
 import ProjectList from "./components/ProjectList";
 import TodoList from "./components/TodoList";
 import "./App.css";
@@ -15,6 +15,7 @@ function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [currentPage, setCurrentPage] = useState("all-projects");
+  const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
 
   const handleAddProject = (project: {
     name: string;
@@ -98,13 +99,26 @@ function App() {
       /> */}
       <Sidebar
         onNavigate={setCurrentPage}
-        onAddProject={() => console.log("Open Add Project Modal")}
+        onAddProject={() => setIsProjectModalOpen(true)}
         className={isSidebarOpen ? "" : "hide"}
       />
 
       <main className={`main-container ${isSidebarOpen ? "" : "expand"}`}>
         <div className="main-content">{renderPage()}</div>
       </main>
+
+      <Modal
+        isOpen={isProjectModalOpen}
+        onClose={() => setIsProjectModalOpen(false)}
+        title="Add Project"
+      >
+        <ProjectForm
+          onAdd={(project) => {
+            handleAddProject(project);
+            setIsProjectModalOpen(false);
+          }}
+        />{" "}
+      </Modal>
     </div>
   );
 }
