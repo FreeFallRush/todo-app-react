@@ -1,5 +1,5 @@
 import type { Project } from "../types";
-import ProjectItem from "./ProjectItem";
+import ProjectItem from "./ProjectICard";
 
 interface ProjectListProps {
   projects: Project[];
