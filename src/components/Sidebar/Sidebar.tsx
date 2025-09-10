@@ -17,11 +17,12 @@ import "../../styles/Sidebar.css";
 interface SidebarProps {
   onNavigate: (page: string) => void;
   onAddProject: () => void;
+  className?: string;
 }
 
-function Sidebar({ onNavigate, onAddProject }: SidebarProps) {
+function Sidebar({ onNavigate, onAddProject, className = "" }: SidebarProps) {
   return (
-    <nav>
+    <nav className={className}>
       <div className="sidebar">
         <ul className="sidebar-options">
           <li onClick={() => onNavigate("all-projects")}>

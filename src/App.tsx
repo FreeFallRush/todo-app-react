@@ -13,6 +13,7 @@ import "./App.css";
 function App() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [todos, setTodos] = useState<Todo[]>([]);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [currentPage, setCurrentPage] = useState("all-projects");
 
   const handleAddProject = (project: {
@@ -87,7 +88,7 @@ function App() {
 
   return (
     <div className="page-content">
-      <Header onToggleSidebar={() => console.log("toggle sidebar")} />
+      <Header onToggleSidebar={() => setIsSidebarOpen((prev) => !prev)} />
       {/* <ProjectForm onAdd={handleAddProject} /> */}
       {/* <ProjectList
         projects={projects}
@@ -98,8 +99,13 @@ function App() {
       <Sidebar
         onNavigate={setCurrentPage}
         onAddProject={() => console.log("Open Add Project Modal")}
+        className={isSidebarOpen ? "" : "hide"}
       />
-      <main className="main-container">
+
+      <main
+        className="main-container"
+        className={`main-container ${isSidebarOpen ? "" : "expand"}`}
+      >
         <div className="main-content">{renderPage()}</div>
       </main>
     </div>
