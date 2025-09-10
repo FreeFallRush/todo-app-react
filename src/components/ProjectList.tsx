@@ -1,33 +1,21 @@
 import type { Project } from "../types";
-import ProjectItem from "./ProjectICard";
+import ProjectCard from "./ProjectCard";
 
 interface ProjectListProps {
   projects: Project[];
-  onDeleteProject: (id: string) => void;
-  onAddTodo: (
-    projectId: string,
-    todo: { title: string; dueDate: string; priority: string }
-  ) => void;
-  onDeleteTodo: (projectId: string, todoId: string) => void;
+  onOpenProject: (id: string) => void;
 }
 
-function ProjectList({
-  projects,
-  onDeleteProject,
-  onAddTodo,
-  onDeleteTodo,
-}: ProjectListProps) {
+function ProjectList({ projects, onOpenProject }: ProjectListProps) {
   if (projects.length === 0) return <p>No projects yet!</p>;
 
   return (
-    <div>
+    <div className="cards-container">
       {projects.map((project) => (
-        <ProjectItem
+        <ProjectCard
           key={project.id}
           project={project}
-          onDelete={onDeleteProject}
-          onAddTodo={onAddTodo}
-          onDeleteTodo={onDeleteTodo}
+          onClick={onOpenProject}
         />
       ))}
     </div>
