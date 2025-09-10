@@ -102,10 +102,7 @@ function App() {
         className={isSidebarOpen ? "" : "hide"}
       />
 
-      <main
-        className="main-container"
-        className={`main-container ${isSidebarOpen ? "" : "expand"}`}
-      >
+      <main className={`main-container ${isSidebarOpen ? "" : "expand"}`}>
         <div className="main-content">{renderPage()}</div>
       </main>
     </div>
