@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Project, Todo } from "./types";
 import { v4 as uuidv4 } from "uuid";
+import { formatDate } from "./utils/date";
 
 import Header from "./components/Header/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
@@ -27,19 +28,19 @@ function App() {
           {
             id: uuidv4(),
             title: "Finish the Odin Project Curriculum",
-            dueDate: "2025-12-12",
+            dueDate: formatDate(new Date("2023-12-12")),
             priority: "High Priority",
           },
           {
             id: uuidv4(),
             title: "Buy Food for Click the cute cat 🐈",
-            dueDate: "2025-10-14",
+            dueDate: formatDate(new Date("2025-10-14")),
             priority: "High Priority",
           },
           {
             id: uuidv4(),
             title: "Make research for next artsy project",
-            dueDate: "2025-11-12",
+            dueDate: formatDate(new Date("2025-11-12")),
             priority: "Medium Priority",
           },
         ],
