@@ -21,37 +21,41 @@ interface SidebarProps {
 }
 
 function Sidebar({ onNavigate, onAddProject, className = "" }: SidebarProps) {
+  const handleNavigate = (page: string) => {
+    onNavigate(page);
+  };
+
   return (
     <nav className={className}>
       <div className="sidebar">
         <ul className="sidebar-options">
-          <li onClick={() => onNavigate("all-projects")}>
+          <li onClick={() => handleNavigate("all-projects")}>
             <a href="#">
               <FontAwesomeIcon icon={faFolderOpen} />
               All Projects
             </a>
           </li>
-          <li onClick={() => onNavigate("all-todos")}>
+          <li onClick={() => handleNavigate("all-todos")}>
             <a href="#">
               <FontAwesomeIcon icon={faCalendarDays} /> All ToDos
             </a>
           </li>
-          <li onClick={() => onNavigate("today")}>
+          <li onClick={() => handleNavigate("today")}>
             <a href="#">
               <FontAwesomeIcon icon={faCalendarDay} /> Today
             </a>
           </li>
-          <li onClick={() => onNavigate("upcoming")}>
+          <li onClick={() => handleNavigate("upcoming")}>
             <a href="#">
               <FontAwesomeIcon icon={faCalendarWeek} /> Upcoming
             </a>
           </li>
-          <li onClick={() => onNavigate("important")}>
+          <li onClick={() => handleNavigate("important")}>
             <a href="#">
               <FontAwesomeIcon icon={faTriangleExclamation} /> Important
             </a>
           </li>
-          <li onClick={() => onNavigate("expired")}>
+          <li onClick={() => handleNavigate("expired")}>
             <a href="#">
               <FontAwesomeIcon icon={faSkullCrossbones} /> Expired
             </a>

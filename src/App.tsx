@@ -7,9 +7,10 @@ import Header from "./components/Header/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Modal from "./components/Modal";
 import ProjectForm from "./components/ProjectForm";
-import ProjectList from "./components/ProjectList";
+//import ProjectList from "./components/ProjectList";
 import ProjectItem from "./components/ProjectItem";
 import TodoList from "./components/TodoList";
+import AllProjectsPage from "./components/pages/AllProjectsPage";
 
 import "./App.css";
 
@@ -122,9 +123,9 @@ function App() {
           );
         }
         return (
-          <ProjectList
+          <AllProjectsPage
             projects={projects}
-            onOpenProject={(id) => setSelectedProjectId(id)}
+            onSelectProject={(id) => setSelectedProjectId(id)}
           />
         );
       case "all-todos":
@@ -153,7 +154,12 @@ function App() {
         onDeleteTodo={handleDeleteTodo}
       /> */}
       <Sidebar
-        onNavigate={setCurrentPage}
+        onNavigate={(page) => {
+          setCurrentPage(page);
+          if (page === "all-projects") {
+            setSelectedProjectId(null);
+          }
+        }}
         onAddProject={() => setIsProjectModalOpen(true)}
         className={isSidebarOpen ? "" : "hide"}
       />
