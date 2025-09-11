@@ -1,0 +1,17 @@
+.all-projects-page {
+  width: 100%;
+}
+
+.page-header {
+  width: 100%;
+  background: var(--nav-gradient-background);
+  color: var(--secondary-color);
+  margin-bottom: 15px;
+}
+
+.page-title {
+  font-family: "RobotoBlack";
+  text-shadow: var(--logo-text-shadow);
+  padding: 20px;
+  text-align: center;
+}

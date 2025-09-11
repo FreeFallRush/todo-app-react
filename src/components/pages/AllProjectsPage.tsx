@@ -1,5 +1,6 @@
 import type { Project } from "../../types";
 import ProjectList from "../ProjectList";
+import "../../styles/AllProjectsPage.css";
 
 interface AllProjectsPageProps {
   projects: Project[];
