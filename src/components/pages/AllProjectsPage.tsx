@@ -1,29 +1,18 @@
 import type { Project } from "../../types";
-import ProjectCard from "../ProjectCard";
+import ProjectList from "../ProjectList";
 
 interface AllProjectsPageProps {
   projects: Project[];
-  onSelectedProject: (projectId: string) => void;
+  onSelectProject: (projectId: string) => void;
 }
 
-function AllProjectsPage({
-  projects,
-  onSelectedProject,
-}: AllProjectsPageProps) {
+function AllProjectsPage({ projects, onSelectProject }: AllProjectsPageProps) {
   return (
     <div className="all-projects-page">
       <div className="page-header">
         <h2 className="page-title">You have: {projects.length} projects </h2>
       </div>
-      <div className="cards-container">
-        {projects.map((project) => (
-          <ProjectCard
-            key={project.id}
-            project={project}
-            onClick={() => onSelectedProject(project.id)}
-          />
-        ))}
-      </div>
+      <ProjectList projects={projects} onOpenProject={onSelectProject} />
     </div>
   );
 }

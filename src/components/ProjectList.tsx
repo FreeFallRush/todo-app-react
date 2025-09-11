@@ -15,7 +15,7 @@ function ProjectList({ projects, onOpenProject }: ProjectListProps) {
         <ProjectCard
           key={project.id}
           project={project}
-          onClick={onOpenProject}
+          onClick={() => onOpenProject(project.id)}
         />
       ))}
     </div>
