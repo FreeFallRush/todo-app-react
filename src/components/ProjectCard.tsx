@@ -7,11 +7,20 @@ interface ProjectCardProps {
 }
 
 function ProjectCard({ project, onClick }: ProjectCardProps) {
+  const truncatedDescription =
+    project.description && project.description.length > 50
+      ? project.description.substring(0, 50) + "..."
+      : project.description || "No description";
+
   return (
-    <div className="project-card" onClick={() => onClick(project.id)}>
+    <div
+      className="project-card"
+      style={{ backgroundColor: project.color }}
+      onClick={() => onClick(project.id)}
+    >
       <h3 className="project-title">{project.name}</h3>
       <p className="tasks-number">{project.todos.length} tasks</p>
-      <p className="project-description">{project.description}</p>
+      <p className="project-description">{truncatedDescription}</p>
     </div>
   );
 }
