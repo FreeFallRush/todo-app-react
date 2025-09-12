@@ -61,7 +61,10 @@ function ProjectItem({
           className="todo-section-actions"
           style={{ backgroundColor: project.color }}
         >
-          <Button onClick={() => setIsTodoFormOpen((prev) => !prev)}>
+          <Button
+            className="add-todo-btn"
+            onClick={() => setIsTodoFormOpen((prev) => !prev)}
+          >
             {isTodoFormOpen ? "Cancel" : "Add New Todo"}
           </Button>
         </div>
