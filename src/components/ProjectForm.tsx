@@ -1,24 +1,41 @@
-import type { NewProject } from "../types";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../styles/ModalForm.css";
 
 interface ProjectFormProps {
-  onSubmit: (project: NewProject) => void;
+  onSubmit: (data: {
+    name: string;
+    description?: string;
+    color?: string;
+  }) => void;
+  initialData?: { name: string; description?: string; color?: string };
 }
 
-function ProjectForm({ onSubmit }: ProjectFormProps) {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [color, setColor] = useState("#000000");
+function ProjectForm({ onSubmit, initialData }: ProjectFormProps) {
+  const [name, setName] = useState(initialData?.name || "");
+  const [description, setDescription] = useState(
+    initialData?.description || ""
+  );
+  const [color, setColor] = useState(initialData?.color || "#000000");
+
+  useEffect(() => {
+    if (initialData) {
+      setName(initialData.name || "");
+      setDescription(initialData.description || "");
+      setColor(initialData.color || "#000000");
+    }
+  }, [initialData]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim()) return;
 
     onSubmit({ name, description, color });
-    setName("");
-    setDescription("");
-    setColor("#000000");
+
+    if (!initialData) {
+      setName("");
+      setDescription("");
+      setColor("#000000");
+    }
   };
 
   return (

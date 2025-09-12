@@ -7,7 +7,6 @@ import Header from "./components/Header/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Modal from "./components/Modal";
 import ProjectForm from "./components/ProjectForm";
-//import ProjectList from "./components/ProjectList";
 import ProjectItem from "./components/ProjectItem";
 import TodoList from "./components/TodoList";
 import AllProjectsPage from "./components/pages/AllProjectsPage";
@@ -76,6 +75,13 @@ function App() {
     setProjects([...projects, newProject]);
   };
 
+  const handleEditProject = (
+    id: string,
+    update: { name: string; description?: string; color?: string }
+  ) => {
+    setProjects(projects.map((p) => (p.id === id ? { ...p, ...update } : p)));
+  };
+
   const handleDeleteProject = (id: string) => {
     setProjects(projects.filter((p) => p.id !== id));
     setSelectedProjectId(null);
@@ -119,6 +125,7 @@ function App() {
               onDelete={handleDeleteProject}
               onAddTodo={handleAddTodo}
               onDeleteTodo={handleDeleteTodo}
+              onEdit={handleEditProject}
             />
           );
         }

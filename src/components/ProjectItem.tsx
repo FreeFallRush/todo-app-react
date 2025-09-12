@@ -1,7 +1,11 @@
+import { useState } from "react";
 import type { Project } from "../types";
+
 import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
-
+import Modal from "./Modal";
+import ProjectForm from "./ProjectForm";
+import Button from "./Button";
 interface ProjectItemProps {
   project: Project;
   onDelete: (id: string) => void;
@@ -10,6 +14,10 @@ interface ProjectItemProps {
     todo: { title: string; dueDate: string; priority: string }
   ) => void;
   onDeleteTodo: (projectId: string, todoId: string) => void;
+  onEdit: (
+    id: string,
+    updated: { name: string; description?: string; color?: string }
+  ) => void;
 }
 
 function ProjectItem({
@@ -17,22 +25,78 @@ function ProjectItem({
   onDelete,
   onAddTodo,
   onDeleteTodo,
+  onEdit,
 }: ProjectItemProps) {
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isTodoFormOpen, setIsTodoFormOpen] = useState(false);
+
   return (
     <div className="project-detail">
-      <h2>{project.name}</h2>
-      {project.description && <p>{project.description}</p>}
+      <div className="page-header">
+        <h2 className="project-name">{project.name}</h2>
+        <p className="project-description">
+          {project.description || "Project has no description"}
+        </p>
 
-      <button onClick={() => onDelete(project.id)}>Delete Project</button>
+        <div className="project-actions">
+          <Button
+            onClick={() => setIsEditModalOpen(true)}
+            className="btn-edit project-edit"
+          >
+            Edit
+          </Button>
+          <Button
+            onClick={() => onDelete(project.id)}
+            className="btn-delete project-delete"
+          >
+            Delete
+          </Button>
+        </div>
+      </div>
 
-      <h3>Add Todo</h3>
-      <TodoForm onAdd={(todo) => onAddTodo(project.id, todo)} />
+      <div className="todo-section">
+        <div
+          className="todo-section-actions"
+          style={{ backgroundColor: project.color }}
+        >
+          <Button onClick={() => setIsTodoFormOpen((prev) => !prev)}>
+            {isTodoFormOpen ? "Cancel" : "Add New Todo"}
+          </Button>
+        </div>
 
-      <h3>Todos</h3>
-      <TodoList
-        todos={project.todos}
-        onDelete={(todoId) => onDeleteTodo(project.id, todoId)}
-      />
+        {isTodoFormOpen && (
+          <TodoForm
+            onAdd={(todo) => {
+              onAddTodo(project.id, todo);
+              setIsTodoFormOpen(false);
+            }}
+          />
+        )}
+
+        <TodoList
+          todos={project.todos}
+          onDelete={(todoId) => onDeleteTodo(project.id, todoId)}
+        />
+      </div>
+
+      <Modal
+        isOpen={isEditModalOpen}
+        onClose={() => setIsEditModalOpen(false)}
+        title="Edit Project"
+      >
+        <ProjectForm
+          key={project.id}
+          initialData={{
+            name: project.name,
+            description: project.description,
+            color: project.color,
+          }}
+          onSubmit={(updated) => {
+            onEdit(project.id, updated);
+            setIsEditModalOpen(false);
+          }}
+        />
+      </Modal>
     </div>
   );
 }
