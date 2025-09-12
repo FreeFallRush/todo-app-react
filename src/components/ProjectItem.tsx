@@ -6,6 +6,8 @@ import TodoForm from "./TodoForm";
 import Modal from "./Modal";
 import ProjectForm from "./ProjectForm";
 import Button from "./Button";
+
+import "../styles/ProjectItem.css";
 interface ProjectItemProps {
   project: Project;
   onDelete: (id: string) => void;
@@ -31,10 +33,10 @@ function ProjectItem({
   const [isTodoFormOpen, setIsTodoFormOpen] = useState(false);
 
   return (
-    <div className="project-detail">
+    <div className="project-page">
       <div className="page-header">
-        <h2 className="project-name">{project.name}</h2>
-        <p className="project-description">
+        <h2 className="project-name-header">{project.name}</h2>
+        <p className="project-description-header">
           {project.description || "Project has no description"}
         </p>
 
