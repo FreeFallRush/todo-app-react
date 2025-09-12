@@ -2,6 +2,11 @@ import type { Todo, Project } from "../types";
 import Button from "./Button";
 import { formatDate } from "../utils/date";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
+
+import "../styles/TodoCard.css";
+
 interface TodoCardProps {
   todo: Todo;
   project?: Project;
@@ -55,13 +60,15 @@ function TodoCard({
         </div>
 
         <div className="todo-actions">
-          {onEdit && (
-            <Button className="edit-todo-btn" onClick={() => onEdit(todo)}>
-              <i className="fa-solid fa-pen-to-square"></i>
-            </Button>
-          )}
+          <Button
+            className="edit-todo-btn"
+            onClick={() => onEdit && onEdit(todo)}
+          >
+            <FontAwesomeIcon icon={faPenToSquare} />
+          </Button>
+
           <Button className="delete-todo-btn" onClick={() => onDelete(todo.id)}>
-            <i className="fa-solid fa-trash"></i>
+            <FontAwesomeIcon icon={faTrash} />
           </Button>
         </div>
       </div>
