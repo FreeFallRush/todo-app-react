@@ -81,6 +81,7 @@ function ProjectItem({
         <TodoList
           todos={project.todos}
           onDelete={(todoId) => onDeleteTodo(project.id, todoId)}
+          project={project}
         />
       </div>
 

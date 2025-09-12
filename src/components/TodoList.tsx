@@ -1,13 +1,20 @@
-import type { Todo } from "../types";
-import TodoItem from "./TodoItem";
+import type { Todo, Project } from "../types";
+import TodoCard from "./TodoCard";
 import "../styles/TodoList.css";
 
 interface TodoListProps {
   todos: Todo[];
   onDelete: (id: string) => void;
+  project?: Project;
+  showProjectLabel?: boolean;
 }
 
-function TodoList({ todos, onDelete }: TodoListProps) {
+function TodoList({
+  todos,
+  onDelete,
+  project,
+  showProjectLabel,
+}: TodoListProps) {
   return (
     <div className="todos-container">
       {todos.length === 0 ? (
@@ -15,7 +22,13 @@ function TodoList({ todos, onDelete }: TodoListProps) {
       ) : (
         <ul className="todos-list">
           {todos.map((todo) => (
-            <TodoItem key={todo.id} todo={todo} onDelete={onDelete} />
+            <TodoCard
+              key={todo.id}
+              todo={todo}
+              project={project}
+              onDelete={onDelete}
+              showProjectLabel={showProjectLabel}
+            />
           ))}
         </ul>
       )}
