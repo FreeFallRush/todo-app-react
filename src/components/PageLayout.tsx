@@ -1,3 +1,5 @@
+import "../styles/PageLayout.css";
+
 interface PageLayoutProps {
   title: string;
   count?: number;
