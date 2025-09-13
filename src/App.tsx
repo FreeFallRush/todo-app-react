@@ -11,6 +11,7 @@ import ProjectItem from "./components/ProjectItem";
 //import TodoList from "./components/TodoList";
 import AllProjectsPage from "./components/pages/AllProjectsPage";
 import AllTodosPage from "./components/pages/AllTodosPage";
+import TodayTodosPage from "./components/pages/TodayTodosPage";
 
 import "./App.css";
 
@@ -170,7 +171,13 @@ function App() {
           />
         );
       case "today":
-        return <h2>Today’s Todos</h2>;
+        return (
+          <TodayTodosPage
+            projects={projects}
+            onDeleteTodo={handleDeleteTodo}
+            onEditTodo={handleEditTodo}
+          />
+        );
       case "upcoming":
         return <h2>Upcoming Todos</h2>;
       case "important":
