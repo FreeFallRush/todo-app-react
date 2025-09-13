@@ -13,9 +13,8 @@ function AllProjectsPage({ projects, onSelectProject }: AllProjectsPageProps) {
       <div className="page-header">
         <h2 className="page-title">You have: {projects.length} projects </h2>
       </div>
-      <div className="todos-section">
-        <ProjectList projects={projects} onOpenProject={onSelectProject} />
-      </div>
+
+      <ProjectList projects={projects} onOpenProject={onSelectProject} />
     </div>
   );
 }
