@@ -13,6 +13,7 @@ import AllProjectsPage from "./components/pages/AllProjectsPage";
 import AllTodosPage from "./components/pages/AllTodosPage";
 import TodayTodosPage from "./components/pages/TodayTodosPage";
 import UpcomingTodosPage from "./components/pages/UpcomingTodosPage";
+import ImportantTodosPage from "./components/pages/ImportantTodosPage";
 
 import "./App.css";
 
@@ -188,7 +189,13 @@ function App() {
           />
         );
       case "important":
-        return <h2>Important Todos</h2>;
+        return (
+          <ImportantTodosPage
+            projects={projects}
+            onDeleteTodo={handleDeleteTodo}
+            onEditTodo={handleEditTodo}
+          />
+        );
       case "expired":
         return <h2>Expired Todos</h2>;
       default:
