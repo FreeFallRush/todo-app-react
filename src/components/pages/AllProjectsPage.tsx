@@ -1,6 +1,6 @@
 import type { Project } from "../../types";
 import ProjectList from "../ProjectList";
-// import "../../styles/AllPages.css";
+import PageLayout from "../PageLayout";
 
 interface AllProjectsPageProps {
   projects: Project[];
@@ -9,13 +9,9 @@ interface AllProjectsPageProps {
 
 function AllProjectsPage({ projects, onSelectProject }: AllProjectsPageProps) {
   return (
-    <div className="all-projects-page">
-      <div className="page-header">
-        <h2 className="page-title">You have: {projects.length} projects </h2>
-      </div>
-
+    <PageLayout title="All Projects" count={projects.length}>
       <ProjectList projects={projects} onOpenProject={onSelectProject} />
-    </div>
+    </PageLayout>
   );
 }
 
