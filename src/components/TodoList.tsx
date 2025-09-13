@@ -5,6 +5,7 @@ import "../styles/TodoList.css";
 interface TodoListProps {
   todos: Todo[];
   onDelete: (id: string) => void;
+  onEdit?: (todo: Todo) => void;
   project?: Project;
   showProjectLabel?: boolean;
 }
@@ -12,6 +13,7 @@ interface TodoListProps {
 function TodoList({
   todos,
   onDelete,
+  onEdit,
   project,
   showProjectLabel,
 }: TodoListProps) {
@@ -27,6 +29,7 @@ function TodoList({
               todo={todo}
               project={project}
               onDelete={onDelete}
+              onEdit={onEdit}
               showProjectLabel={showProjectLabel}
             />
           ))}

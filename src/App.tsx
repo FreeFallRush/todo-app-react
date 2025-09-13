@@ -52,7 +52,6 @@ function App() {
     localStorage.setItem("todoProjects", JSON.stringify(projects));
   }, [projects]);
 
-  const [todos, setTodos] = useState<Todo[]>([]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [currentPage, setCurrentPage] = useState("all-projects");
   const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
@@ -103,6 +102,25 @@ function App() {
     );
   };
 
+  const handleEditTodo = (
+    projectId: string,
+    todoId: string,
+    updated: { title: string; dueDate: string; priority: string }
+  ) => {
+    setProjects(
+      projects.map((p) =>
+        p.id === projectId
+          ? {
+              ...p,
+              todos: p.todos.map((t) =>
+                t.id === todoId ? { ...t, ...updated } : t
+              ),
+            }
+          : p
+      )
+    );
+  };
+
   const handleDeleteTodo = (projectId: string, todoId: string) => {
     setProjects(
       projects.map((p) =>
@@ -126,6 +144,7 @@ function App() {
               onAddTodo={handleAddTodo}
               onDeleteTodo={handleDeleteTodo}
               onEdit={handleEditProject}
+              onEditTodo={handleEditTodo}
             />
           );
         }
