@@ -8,7 +8,7 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import Modal from "./components/Modal";
 import ProjectForm from "./components/ProjectForm";
 import ProjectItem from "./components/ProjectItem";
-//import TodoList from "./components/TodoList";
+
 import AllProjectsPage from "./components/pages/AllProjectsPage";
 import AllTodosPage from "./components/pages/AllTodosPage";
 import TodayTodosPage from "./components/pages/TodayTodosPage";
@@ -142,6 +142,11 @@ function App() {
     );
   };
 
+  const todoHandlers = {
+    onDeleteTodo: handleDeleteTodo,
+    onEditTodo: handleEditTodo,
+  };
+
   const renderPage = () => {
     switch (currentPage) {
       case "all-projects":
@@ -166,45 +171,15 @@ function App() {
           />
         );
       case "all-todos":
-        return (
-          <AllTodosPage
-            projects={projects}
-            onDeleteTodo={handleDeleteTodo}
-            onEditTodo={handleEditTodo}
-          />
-        );
+        return <AllTodosPage projects={projects} {...todoHandlers} />;
       case "today":
-        return (
-          <TodayTodosPage
-            projects={projects}
-            onDeleteTodo={handleDeleteTodo}
-            onEditTodo={handleEditTodo}
-          />
-        );
+        return <TodayTodosPage projects={projects} {...todoHandlers} />;
       case "upcoming":
-        return (
-          <UpcomingTodosPage
-            projects={projects}
-            onDeleteTodo={handleDeleteTodo}
-            onEditTodo={handleEditTodo}
-          />
-        );
+        return <UpcomingTodosPage projects={projects} {...todoHandlers} />;
       case "important":
-        return (
-          <ImportantTodosPage
-            projects={projects}
-            onDeleteTodo={handleDeleteTodo}
-            onEditTodo={handleEditTodo}
-          />
-        );
+        return <ImportantTodosPage projects={projects} {...todoHandlers} />;
       case "expired":
-        return (
-          <ExpiredTodosPage
-            projects={projects}
-            onDeleteTodo={handleDeleteTodo}
-            onEditTodo={handleEditTodo}
-          />
-        );
+        return <ExpiredTodosPage projects={projects} {...todoHandlers} />;
       default:
         return <h2>Page not found</h2>;
     }
