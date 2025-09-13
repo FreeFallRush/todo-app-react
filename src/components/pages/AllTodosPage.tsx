@@ -1,9 +1,5 @@
-import { useState } from "react";
-import type { Project, Todo } from "../../types";
-import TodoList from "../TodoList";
-import TodoForm from "../TodoForm";
-import Modal from "../Modal";
-import "../../styles/AllPages.css";
+import type { Project } from "../../types";
+import BaseTodosPage from "../BaseTodosPage";
 
 interface AllTodosPageProps {
   projects: Project[];
@@ -20,58 +16,14 @@ function AllTodosPage({
   onDeleteTodo,
   onEditTodo,
 }: AllTodosPageProps) {
-  const [isEditTodoModalOpen, setIsEditTodoModalOpen] = useState(false);
-  const [todoToEdit, setTodoToEdit] = useState<
-    (Todo & { projectId: string }) | null
-  >(null);
-
-  const allTodos: (Todo & { projectId: string })[] = projects.flatMap((p) =>
-    p.todos.map((t) => ({ ...t, projectId: p.id }))
-  );
-
   return (
-    <div className="all-todos-page">
-      <div className="page-header">
-        <h2 className="page-title">You have: {allTodos.length} ToDos</h2>
-      </div>
-
-      <TodoList
-        todos={allTodos}
-        showProjectLabel
-        onDelete={(todoId) => {
-          const project = projects.find((p) =>
-            p.todos.some((t) => t.id === todoId)
-          );
-          if (project) onDeleteTodo(project.id, todoId);
-        }}
-        onEdit={(todo) => {
-          const todoWithProject = allTodos.find((t) => t.id === todo.id);
-          if (!todoWithProject) return;
-          setTodoToEdit(todoWithProject);
-          setIsEditTodoModalOpen(true);
-        }}
-      />
-
-      <Modal
-        isOpen={isEditTodoModalOpen}
-        onClose={() => setIsEditTodoModalOpen(false)}
-        title="Edit Todo"
-      >
-        {todoToEdit && (
-          <TodoForm
-            initialData={{
-              title: todoToEdit.title,
-              dueDate: todoToEdit.dueDate,
-              priority: todoToEdit.priority,
-            }}
-            onSubmit={(updated) => {
-              onEditTodo(todoToEdit.projectId, todoToEdit.id, updated);
-              setIsEditTodoModalOpen(false);
-            }}
-          />
-        )}
-      </Modal>
-    </div>
+    <BaseTodosPage
+      title="All Todos"
+      projects={projects}
+      filterFn={() => true}
+      onDeleteTodo={onDeleteTodo}
+      onEditTodo={onEditTodo}
+    />
   );
 }
 
