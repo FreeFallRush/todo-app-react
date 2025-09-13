@@ -1,69 +1,47 @@
-# React + TypeScript + Vite
+# Todo App React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-featured **Todo App** remake with **React** and **TypeScript**, originally from [The Odin Project Curriculum – Node Path](https://www.theodinproject.com/lessons/node-path-javascript-todo-list).
 
-Currently, two official plugins are available:
+- Original exercise: [GitHub Repository](https://github.com/FreeFallRush/todo-list)
+- Live demo: [View Project](https://freefallrush-todo-app.netlify.app/#)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+This app is a modern remake of a vanilla JS todo list with React and TypeScript, and includes:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Project Management
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Create, edit, and delete projects.
+- Each project can contain multiple todos.
+- Projects persist in **localStorage**.
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+### Todo Management
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Add, edit, and delete todos within projects.
+- Todos have:
+  - `title`
+  - `dueDate`
+  - `priority` (`High Priority`, `Medium Priority`, etc.)
+- Filtering options across all projects:
+  - **All Todos**
+  - **Today’s Todos**
+  - **Upcoming Todos**
+  - **Important Todos** (high priority)
+  - **Expired Todos** (past due date)
+- Todos pages are reusable via a `BaseTodosPage` component to reduce code duplication.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### UI & Layout
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **Responsive sidebar** for navigation.
+- **Modal** for adding/editing projects and todos.
+- **PageLayout** component used for consistent page headers and content structure.
+- **Reusable components**:
+  - `TodoList`
+  - `ProjectList`
+  - `BaseTodosPage`
+  - `PageLayout`
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Data Handling
+
+- Projects and todos are saved in **localStorage**, so data persists between sessions.
+- Filtering logic is centralized in `utils/todoFilters.ts` for maintainability
