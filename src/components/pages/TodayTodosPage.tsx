@@ -1,6 +1,6 @@
-import type { Project, Todo } from "../../types";
+import type { Project } from "../../types";
 import BaseTodosPage from "../BaseTodosPage";
-import { formatDate } from "../../utils/date";
+import { isToday } from "../../utils/todoFilters";
 
 interface TodayTodosPageProps {
   projects: Project[];
@@ -21,7 +21,7 @@ function TodayTodosPage({
     <BaseTodosPage
       title="Today's Todos"
       projects={projects}
-      filterFn={(t: Todo) => t.dueDate === formatDate(new Date())}
+      filterFn={isToday}
       onDeleteTodo={onDeleteTodo}
       onEditTodo={onEditTodo}
     />
