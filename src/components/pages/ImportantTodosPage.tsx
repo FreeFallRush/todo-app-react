@@ -3,8 +3,7 @@ import type { Project, Todo } from "../../types";
 import TodoList from "../TodoList";
 import TodoForm from "../TodoForm";
 import Modal from "../Modal";
-import "../../styles/AllProjectsPage.css";
-
+import "../../styles/AllPages.css";
 interface ImportantTodosPageProps {
   projects: Project[];
   onDeleteTodo: (projectId: string, todoId: string) => void;
