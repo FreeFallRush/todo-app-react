@@ -1,6 +1,7 @@
 .all-projects-page,
 .all-todos-page,
-.today-todos-page {
+.today-todos-page,
+.upcoming-todos-page {
   width: 100%;
 }
 

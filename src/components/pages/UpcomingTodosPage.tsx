@@ -4,6 +4,7 @@ import TodoList from "../TodoList";
 import TodoForm from "../TodoForm";
 import Modal from "../Modal";
 import { formatDate } from "../../utils/date";
+import "../../styles/AllPages.css";
 
 interface UpcomingTodosPageProps {
   projects: Project[];
