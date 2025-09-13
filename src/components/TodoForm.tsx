@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../styles/ModalForm.css";
 
 interface TodoFormProps {
   onSubmit: (todo: {
@@ -25,7 +26,7 @@ function TodoForm({ onSubmit, initialData }: TodoFormProps) {
   return (
     <form onSubmit={handleSubmit} className="todo-form">
       <div className="todo-form-field">
-        <label>ToDo Name:</label>
+        <h3 className="todo-name-text">ToDo Name:</h3>
         <input
           type="text"
           value={title}
@@ -37,7 +38,7 @@ function TodoForm({ onSubmit, initialData }: TodoFormProps) {
       </div>
 
       <div className="todo-form-field">
-        <label>Due Date:</label>
+        <h3 className="todo-duedate-text">Due Date:</h3>
         <input
           type="date"
           value={dueDate}
@@ -47,8 +48,12 @@ function TodoForm({ onSubmit, initialData }: TodoFormProps) {
       </div>
 
       <div className="todo-form-field">
-        <label>Priority:</label>
-        <select value={priority} onChange={(e) => setPriority(e.target.value)}>
+        <h3 className="todo-priority-text">Priority:</h3>
+        <select
+          className="todo-priority-select"
+          value={priority}
+          onChange={(e) => setPriority(e.target.value)}
+        >
           <option value="High Priority">High Priority</option>
           <option value="Medium Priority">Medium Priority</option>
           <option value="Low Priority">Low Priority</option>

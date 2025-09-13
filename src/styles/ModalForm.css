@@ -23,7 +23,9 @@
   text-shadow: 0 0 4px rgb(109, 152, 162), 0 0 8px rgb(109, 152, 162);
 }
 
-input[type="text"] {
+input[type="text"],
+input[type="date"],
+.todo-priority-select {
   width: 80%;
   padding: 8px;
   border: 3px dashed rgb(109, 152, 162);
@@ -32,8 +34,20 @@ input[type="text"] {
   font-family: "SundayTime";
 }
 
-input[type="text"]:focus {
+.todo-priority-select {
+  text-shadow: var(--nav-menu-text-shadow);
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+.todo-priority-select:focus {
   box-shadow: var(--main-box-shadow);
+}
+
+.todo-priority-select option {
+  color: rgb(109, 152, 162);
+  text-shadow: none;
+  background-color: var(--secondary-color);
 }
 
 .modal-form-container > div > h3 {
@@ -101,4 +115,18 @@ textarea:focus {
   box-shadow: var(--inset-box-shadow);
   color: var(--secondary-color);
   background-color: var(--nav-gradient-background);
+}
+
+.todo-form-field {
+  text-align: center;
+}
+
+.todo-name-text,
+.todo-duedate-text,
+.todo-priority-text {
+  padding-top: 10px;
+  padding-bottom: 5px;
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+  text-shadow: var(--logo-3D-text-shadow);
 }
