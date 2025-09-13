@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { Project, Todo } from "./types";
+import type { Project } from "./types";
 import { v4 as uuidv4 } from "uuid";
 import { formatDate } from "./utils/date";
 
@@ -8,15 +8,22 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import Modal from "./components/Modal";
 import ProjectForm from "./components/ProjectForm";
 import ProjectItem from "./components/ProjectItem";
-import TodoList from "./components/TodoList";
+//import TodoList from "./components/TodoList";
 import AllProjectsPage from "./components/pages/AllProjectsPage";
+import AllTodosPage from "./components/pages/AllTodosPage";
 
 import "./App.css";
 
 function App() {
   const [projects, setProjects] = useState<Project[]>(() => {
     const saved = localStorage.getItem("todoProjects");
-    if (saved) return JSON.parse(saved);
+    if (saved) {
+      try {
+        return JSON.parse(saved) as Project[];
+      } catch (err) {
+        console.error("Failed to parse projects from localStorage", err);
+      }
+    }
 
     return [
       {
@@ -155,7 +162,13 @@ function App() {
           />
         );
       case "all-todos":
-        return <TodoList todos={todos} onDelete={() => {}} />;
+        return (
+          <AllTodosPage
+            projects={projects}
+            onDeleteTodo={handleDeleteTodo}
+            onEditTodo={handleEditTodo}
+          />
+        );
       case "today":
         return <h2>Today’s Todos</h2>;
       case "upcoming":
@@ -172,13 +185,7 @@ function App() {
   return (
     <div className="page-content">
       <Header onToggleSidebar={() => setIsSidebarOpen((prev) => !prev)} />
-      {/* <ProjectForm onAdd={handleAddProject} /> */}
-      {/* <ProjectList
-        projects={projects}
-        onDeleteProject={handleDeleteProject}
-        onAddTodo={handleAddTodo}
-        onDeleteTodo={handleDeleteTodo}
-      /> */}
+
       <Sidebar
         onNavigate={(page) => {
           setCurrentPage(page);
@@ -204,7 +211,7 @@ function App() {
             handleAddProject(project);
             setIsProjectModalOpen(false);
           }}
-        />{" "}
+        />
       </Modal>
     </div>
   );

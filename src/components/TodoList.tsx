@@ -3,9 +3,9 @@ import TodoCard from "./TodoCard";
 import "../styles/TodoList.css";
 
 interface TodoListProps {
-  todos: Todo[];
+  todos: (Todo & { projectId?: string })[];
   onDelete: (id: string) => void;
-  onEdit?: (todo: Todo) => void;
+  onEdit?: (todo: Todo & { projectId?: string }) => void;
   project?: Project;
   showProjectLabel?: boolean;
 }
