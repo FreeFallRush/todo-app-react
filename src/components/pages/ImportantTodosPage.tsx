@@ -1,5 +1,6 @@
-import type { Project, Todo } from "../../types";
+import type { Project } from "../../types";
 import BaseTodosPage from "../BaseTodosPage";
+import { isImportant } from "../../utils/todoFilters";
 
 interface ImportantTodosPageProps {
   projects: Project[];
@@ -20,7 +21,7 @@ function ImportantTodosPage({
     <BaseTodosPage
       title="Important Todos"
       projects={projects}
-      filterFn={(t: Todo) => t.priority === "High Priority"}
+      filterFn={isImportant}
       onDeleteTodo={onDeleteTodo}
       onEditTodo={onEditTodo}
     />

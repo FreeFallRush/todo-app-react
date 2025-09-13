@@ -1,7 +1,14 @@
 import type { Todo } from "../types";
-import { formatDate } from "./date";
 
-export const isToday = (todo: Todo) => todo.dueDate === formatDate(new Date());
+export const isToday = (todo: Todo) => {
+  const today = new Date();
+  const due = new Date(todo.dueDate);
+  return (
+    due.getFullYear() === today.getFullYear() &&
+    due.getMonth() === today.getMonth() &&
+    due.getDate() === today.getDate()
+  );
+};
 
 export const isUpcoming = (todo: Todo) => new Date(todo.dueDate) > new Date();
 

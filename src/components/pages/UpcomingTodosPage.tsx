@@ -1,5 +1,6 @@
-import type { Project, Todo } from "../../types";
+import type { Project } from "../../types";
 import BaseTodosPage from "../BaseTodosPage";
+import { isUpcoming } from "../../utils/todoFilters";
 
 interface UpcomingTodosPageProps {
   projects: Project[];
@@ -20,7 +21,7 @@ function UpcomingTodosPage({
     <BaseTodosPage
       title="Upcoming Todos"
       projects={projects}
-      filterFn={(t: Todo) => new Date(t.dueDate) > new Date()}
+      filterFn={isUpcoming}
       onDeleteTodo={onDeleteTodo}
       onEditTodo={onEditTodo}
     />
