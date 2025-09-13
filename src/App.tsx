@@ -14,6 +14,7 @@ import AllTodosPage from "./components/pages/AllTodosPage";
 import TodayTodosPage from "./components/pages/TodayTodosPage";
 import UpcomingTodosPage from "./components/pages/UpcomingTodosPage";
 import ImportantTodosPage from "./components/pages/ImportantTodosPage";
+import ExpiredTodosPage from "./components/pages/ExpiredTodosPage";
 
 import "./App.css";
 
@@ -197,7 +198,13 @@ function App() {
           />
         );
       case "expired":
-        return <h2>Expired Todos</h2>;
+        return (
+          <ExpiredTodosPage
+            projects={projects}
+            onDeleteTodo={handleDeleteTodo}
+            onEditTodo={handleEditTodo}
+          />
+        );
       default:
         return <h2>Page not found</h2>;
     }
