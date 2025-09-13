@@ -112,3 +112,152 @@
   width: 24px;
   height: 24px;
 }
+
+@media all and (max-width: 913px) {
+  .todo-card {
+    width: 80%;
+    height: 180px;
+    margin-bottom: 23px;
+  }
+  .todo-content {
+    height: 170px;
+    font-size: 0.9rem;
+    padding: 8px 15px;
+  }
+}
+
+@media all and (max-width: 880px) {
+  .cards-container {
+    width: 90%;
+  }
+  .project-card {
+    font-size: 0.9rem;
+    height: auto;
+    width: 100%;
+  }
+  .todo-card {
+    width: 80%;
+    height: 180px;
+    margin-bottom: 33px;
+  }
+  .todo-content {
+    height: 170px;
+    font-size: 0.8rem;
+    padding: 8px;
+  }
+  .todo-actions {
+    display: flex;
+    align-items: center;
+    width: 150px;
+    margin-right: 8px;
+  }
+  .todo-actions button {
+    font-size: 20px;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+  }
+  .todo-actions .edit-todo-btn {
+    margin-right: 5px;
+  }
+}
+
+@media all and (max-width: 680px) {
+  .todo-card {
+    width: 90%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  .todo-content {
+    margin-top: 8px;
+    display: flex;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    border: var(--dashed-border-black);
+    padding: 3px;
+  }
+
+  .todo-name-container,
+  .todo-duedate-container,
+  .todo-priority-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 88%;
+    height: auto;
+    border-bottom: var(--dashed-border-black);
+    padding: 3px;
+  }
+
+  .todo-actions {
+    display: flex;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    justify-content: center;
+  }
+}
+
+@media all and (max-width: 450px) {
+  .project-actions {
+    display: flex;
+    width: 70%;
+    justify-content: center;
+  }
+
+  .todo-actions button {
+    font-size: 15px;
+    text-align: center;
+    padding: 5px;
+    cursor: pointer;
+  }
+
+  .todo-card {
+    width: 90%;
+    height: auto;
+  }
+  .todo-content {
+    margin-top: 8px;
+    display: flex;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    border: var(--dashed-border-black);
+    padding: 3px;
+  }
+  .todo-name-container,
+  .todo-duedate-container,
+  .todo-priority-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 88%;
+    height: auto;
+    border-bottom: var(--dashed-border-black);
+    padding: 3px;
+  }
+  .todo-name {
+    word-break: break-all;
+  }
+  .todo-actions {
+    width: 100%;
+    display: flex;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    justify-content: center;
+    width: 88%;
+    height: auto;
+  }
+  .todo-actions button {
+    font-size: 15px;
+    width: auto;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .todo-actions .edit-todo-btn {
+    margin-right: 12px;
+  }
+}

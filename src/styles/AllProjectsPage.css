@@ -15,3 +15,12 @@
   padding: 20px;
   text-align: center;
 }
+
+@media all and (max-width: 450px) {
+  .page-title {
+    font-size: 0.9rem;
+    text-shadow: var(--logo-text-shadow);
+    padding: 20px;
+    margin-bottom: 10px;
+  }
+}
