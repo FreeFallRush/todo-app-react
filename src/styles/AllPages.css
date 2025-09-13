@@ -2,7 +2,8 @@
 .all-todos-page,
 .today-todos-page,
 .upcoming-todos-page,
-.important-todos-page {
+.important-todos-page,
+.expired-todos-page {
   width: 100%;
 }
 
